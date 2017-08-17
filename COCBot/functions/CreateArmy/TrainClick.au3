@@ -45,19 +45,35 @@ Func TrainClick($x, $y, $iTimes, $iSpeed, $aWatchSpot, $sdebugtxt, $TypeTroops)
 					If _Sleep($iSpeed, False) Then ExitLoop
 				Next
 			Else
-				If isProblemAffect(True) Then checkMainScreen(False) ; Check for BS/CoC errors
-				Local $sLogText = Default
-				If $g_iDebugSetlogTrain = 1 Then $sLogText = "TrainClick " & $x & "," & $y & "," & $iTimes
-				If _CheckPixel($aWatchSpot, True, Default, $sLogText) = True Then ; Check to see if barrack full
-					If $g_iDebugClick = 1 Then SetLog("Camp is FULL", $COLOR_DEBUG)
-					Return ; Check to see if barrack full
-				EndIf
-				If $g_bUseRandomClick = False Then
-					PureClick($x, $y, $iTimes, $iSpeed) ;Click $iTimes.
-				Else
-					PureClickR($TypeTroops, $x, $y, $iTimes, $iSpeed) ;Click $iTimes.
-				EndIf
-				If _Sleep($iSpeed, False) Then Return
+				For $i = 0 To ($iTimes - 1)
+					If isProblemAffect(True) Then checkMainScreen(False) ; Check for BS/CoC errors
+					Local $sLogText = Default
+					If $g_iDebugSetlogTrain = 1 Then $sLogText = "TrainClick " & $x & "," & $y & "," & $iTimes
+					If _CheckPixel($aWatchSpot, True, Default, $sLogText) = True Then ; Check to see if barrack full
+						If $g_iDebugClick = 1 Then SetLog("Camp is FULL after " & $i & " clicks", $COLOR_DEBUG)
+						ExitLoop
+					EndIf
+					If $g_bUseRandomClick = False Then
+						PureClick($x, $y, 1, $iSpeed) ;Click $iTimes.
+					Else
+						PureClickR($TypeTroops, $x, $y, 1, $iSpeed) ;Click $iTimes.
+					EndIf
+					If _Sleep($iSpeed, False) Then ExitLoop
+				Next
+				
+				;If isProblemAffect(True) Then checkMainScreen(False) ; Check for BS/CoC errors
+				;Local $sLogText = Default
+				;If $g_iDebugSetlogTrain = 1 Then $sLogText = "TrainClick " & $x & "," & $y & "," & $iTimes
+				;If _CheckPixel($aWatchSpot, True, Default, $sLogText) = True Then ; Check to see if barrack full
+				;	If $g_iDebugClick = 1 Then SetLog("Camp is FULL", $COLOR_DEBUG)
+				;	Return ; Check to see if barrack full
+				;EndIf
+				;If $g_bUseRandomClick = False Then
+				;	PureClick($x, $y, $iTimes, $iSpeed) ;Click $iTimes.
+				;Else
+				;	PureClickR($TypeTroops, $x, $y, $iTimes, $iSpeed) ;Click $iTimes.
+				;EndIf
+				;If _Sleep($iSpeed, False) Then Return
 			EndIf
 		Else
 			Local $sLogText = Default

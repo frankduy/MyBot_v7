@@ -53,15 +53,15 @@ Func CheckHeroesHealth()
 					$g_bCheckQueenPower = False
 				EndIf
 			EndIf
-			If $g_bCheckWardenPower Then
-				Local $WardenPixelColor = _GetPixelColor($aWardenHealthCopy[0], $aWardenHealthCopy[1], $g_bCapturePixel)
-				If $g_iDebugSetlog = 1 Then Setlog(" Grand Warden _GetPixelColor(" & $aWardenHealthCopy[0] & "," & $aWardenHealthCopy[1] & "): " & $WardenPixelColor, $COLOR_DEBUG)
-				If Not _CheckPixel2($aWardenHealthCopy, $WardenPixelColor, "Red+Blue") Then
-					SetLog("Grand Warden is getting weak, Activating Warden's power", $COLOR_INFO)
-					SelectDropTroop($g_iWardenSlot)
-					$g_bCheckWardenPower = False
-				EndIf
-			EndIf
+			;If $g_bCheckWardenPower Then
+			;	Local $WardenPixelColor = _GetPixelColor($aWardenHealthCopy[0], $aWardenHealthCopy[1], $g_bCapturePixel)
+			;	If $g_iDebugSetlog = 1 Then Setlog(" Grand Warden _GetPixelColor(" & $aWardenHealthCopy[0] & "," & $aWardenHealthCopy[1] & "): " & $WardenPixelColor, $COLOR_DEBUG)
+			;	If Not _CheckPixel2($aWardenHealthCopy, $WardenPixelColor, "Red+Blue") Then
+			;		SetLog("Grand Warden is getting weak, Activating Warden's power", $COLOR_INFO)
+			;		SelectDropTroop($g_iWardenSlot)
+			;		$g_bCheckWardenPower = False
+			;	EndIf
+			;EndIf
 
 		EndIf
 

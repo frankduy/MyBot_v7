@@ -758,6 +758,11 @@ Func NotifyRemoteControlProc()
 								NotifyPushToPushBullet($g_sNotifyOrigin & " | " & GetTranslatedFileIni("MBR Func_Notify", "Command-Not-Recognized", "Command not recognized") & "\n" & GetTranslatedFileIni("MBR Func_Notify", "Request-For-Help_Info_01", "Please push BOT HELP to obtain a complete command list."))
 								NotifyDeleteMessageFromPushBullet($iden[$x])
 							EndIf
+						Case GetTranslatedFileIni("MBR Func_Notify", "Bot", -1) & " " & GetTranslatedFileIni("MBR Func_Notify", "RESET", "RESET")
+							NotifyPushToPushBullet("Rebooting PC...")
+							If _Sleep($DELAYBOTCOMMAND1) Then Return
+							Shutdown(BitOR($SD_REBOOT, $SD_FORCE)) ; Reboot
+							Return  ; HaHa - No Return possible!
 					EndSwitch
 					$body[$x] = ""
 					$iden[$x] = ""

@@ -131,6 +131,10 @@ Func ParseAttackCSV($debug = False)
 								debugAttackCSV($i & " - " & $pixel[0] & "," & $pixel[1])
 							Next
 						EndIf
+					Case "ACTIVE"
+						ReleaseClicks()
+						Setlog("Active wander = ")
+						SelectDropTroop($g_iWardenSlot)						
 					Case "DROP"
 						KeepClicks()
 						;index...
